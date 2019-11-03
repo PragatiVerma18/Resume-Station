@@ -3,6 +3,11 @@
 
 {% block content %}
 
+{% if error %}
+<div class="alert alert-danger" role="alert">
+    <strong>{{error}}</strong> 
+  </div>
+  {% endif %}
 
 <section class="testimonial py-5" id="testimonial">
     <div class="container">
@@ -21,18 +26,19 @@
             </div>
             <div class="col-md-8 py-5 border">
                 <h4 class="pb-4">Please fill with your details</h4>
-                <form>
+                <form action="{% url 'login' %}" method="POST">
+                        {% csrf_token %}
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                          <input id="Full Name" name="Full Name" placeholder="Full Name" class="form-control" type="text">
+                          <input id="Full Name" name="username" placeholder="User Name" class="form-control" type="text">
                         </div>
                         <div class="form-group col-md-6">
-                          <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                          <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email">
                         </div>
                       </div>
                     
                     <div class="form-row">
-                        <button type="button" class="btn btn-danger">Submit</button>
+                        <button type="submit" class="btn btn-danger">Submit</button>
                     </div>
                 </form>
             </div>
