@@ -24,4 +24,5 @@ urlpatterns = [
     path('', views.home , name='home'),
     path('accounts/', include('accounts.urls')),
     path('resume/', include('resume.urls')),
+    path('avatar/', include('avatar.urls'), name="avatar_change"),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) 
