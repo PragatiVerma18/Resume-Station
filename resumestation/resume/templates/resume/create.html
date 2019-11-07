@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-8 py-5 border text-center">
                 <h4 class="pb-4">Please fill with your details</h4>
-                <form action="{% url 'home' %}" method="POST">
+                <form action="{% url 'create' %}" method="POST">
                         {% csrf_token %}
                     <div class="form-row">
                         <div class="form-group col-md-6 pb-3" style="margin: auto;">
@@ -43,61 +43,67 @@
                               <input type="about" class="form-control" placeholder="About" name="about" style="margin-bottom: 20px;">
                             </div>
                           </div>
+                          <hr>
                           <span href="#" id="add-skill1"><i class="fa fa-plus"></i> Add a new skill</span>
                           <div id="personal-skills">
                           <div class="form-row">
                            <div class="form-group col-md-6 pb-3" style="margin: auto;">
-                             <input type="text" class="form-control" placeholder="Personal Skills" name="" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Percentage" name="" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Personal Skills" name="personal-skills" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Percentage" name="personal-skills-percentage" style="margin-bottom: 20px;">
                            </div>
                          </div>
                           </div>
+                          <hr>
                           <span href="#" id="add-skill2"><i class="fa fa-plus"></i> Add a new skill</span>
                           <div id="professional-skills">
                           <div class="form-row">
                            <div class="form-group col-md-6 pb-3" style="margin: auto;">
-                             <input type="text" class="form-control" placeholder="Professional Skills" name="" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Percentage" name="" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Professional Skills" name="professional-skills" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Percentage" name="professional-skills-percentage" style="margin-bottom: 20px;">
                            </div>
                          </div>
                           </div>
+                          <hr>
 
                           <span href="#" id="add-work"><i class="fa fa-plus"></i> Add a new work experience</span>
                           <div id="work">
                           <div class="form-row">
                            <div class="form-group col-md-6 pb-3" style="margin: auto;">
-                             <input type="date" class="form-control" placeholder="started from" name="" style="margin-bottom: 20px;">
-                             <input type="date" class="form-control" placeholder="ended on" name="" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Company" name="" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Designation" name="" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Description" name="" style="margin-bottom: 20px;">
+                             <input type="date" class="form-control" placeholder="started from" name="started-from" style="margin-bottom: 20px;">
+                             <input type="date" class="form-control" placeholder="ended on" name="end-date" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Company" name="company" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Designation" name="designation" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Description" name="description" style="margin-bottom: 20px;">
                            </div>
                          </div>
                           </div>
+                          <hr>
 
                           <span href="#" id="add-education"><i class="fa fa-plus"></i> Add another educational institution</span>
                           <div id="education">
                           <div class="form-row">
                            <div class="form-group col-md-6 pb-3" style="margin: auto;">
-                              <input type="date" class="form-control" placeholder="started from" name="" style="margin-bottom: 20px;">
-                              <input type="date" class="form-control" placeholder="ended on" name="" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Course" name="" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Name of Institution" name="" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Description" name="" style="margin-bottom: 20px;">
+                              <input type="date" class="form-control" placeholder="started from" name="started-from" style="margin-bottom: 20px;">
+                              <input type="date" class="form-control" placeholder="ended on" name="end-date" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Course" name="course" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Name of Institution" name="institution" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Description" name="description" style="margin-bottom: 20px;">
                            </div>
                          </div>
                           </div>
-
+                          <hr>
                           
                     
                     <div class="form-row pb-3">
                         <button type="submit" class="btn btn-danger text-center" style="margin: auto;">Submit</button>
+                        <input type="hidden" name="data" id="data">
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 document.getElementById('add-skill1').addEventListener('click',addSkills);
 function addSkills()
@@ -105,10 +111,11 @@ function addSkills()
                            var div = document.createElement('div');
                            div.className = 'form-row';
                            div.innerHTML = `
-                           <div class="form-group col-md-6 pb-3" style="margin: auto;">
-                             <input type="text" class="form-control" placeholder="Personal Skills" name="" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Percentage" name="" style="margin-bottom: 20px;">
+                           <div class="form-group col-md-6 pb-3" style="margin: auto !important;">
+                             <input type="text" class="form-control" placeholder="Personal Skills" name="personal-skills" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Percentage" name="personal-skills-percentage" style="margin-bottom: 20px;">
                            </div>
+                           <hr>
                            `
                            document.querySelector('#personal-skills').appendChild(div);
                            //console.log(div);
@@ -120,10 +127,11 @@ function addSkills2()
                            var div = document.createElement('div');
                            div.className = 'form-row';
                            div.innerHTML = `
-                           <div class="form-group col-md-6 pb-3" style="margin: auto;">
-                             <input type="text" class="form-control" placeholder="Professional Skills" name="" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Percentage" name="" style="margin-bottom: 20px;">
+                           <div class="form-group col-md-6 pb-3" style="margin: auto !important;">
+                             <input type="text" class="form-control" placeholder="Professional Skills" name="professional-skills" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Percentage" name="professional-skills-percentage" style="margin-bottom: 20px;">
                            </div>
+                           <hr>
                            `
                            document.querySelector('#professional-skills').appendChild(div);
                            //console.log(div);
@@ -135,13 +143,14 @@ function addwork()
                            var div = document.createElement('div');
                            div.className = 'form-row';
                            div.innerHTML = `
-                           <div class="form-group col-md-6 pb-3" style="margin: auto;">
-                             <input type="date" class="form-control" placeholder="started from" name="" style="margin-bottom: 20px;">
-                             <input type="date" class="form-control" placeholder="ended on" name="" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Company" name="" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Designation" name="" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Description" name="" style="margin-bottom: 20px;">
+                           <div class="form-group col-md-6 pb-3" style="margin: auto !important;">
+                             <input type="date" class="form-control" placeholder="started from" name="started-from" style="margin-bottom: 20px;">
+                             <input type="date" class="form-control" placeholder="ended on" name="end-date" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Company" name="company" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Designation" name="designation" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Description" name="description" style="margin-bottom: 20px;">
                            </div>
+                           <hr>
                            `
                            document.querySelector('#work').appendChild(div);
                            //console.log(div);
@@ -153,17 +162,26 @@ function addeducation()
                            var div = document.createElement('div');
                            div.className = 'form-row';
                            div.innerHTML = `
-                           <div class="form-group col-md-6 pb-3" style="margin: auto;">
-                              <input type="date" class="form-control" placeholder="started from" name="" style="margin-bottom: 20px;">
-                              <input type="date" class="form-control" placeholder="ended on" name="" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Course" name="" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Name of Institution" name="" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Description" name="" style="margin-bottom: 20px;">
+                           <div class="form-group col-md-6 pb-3" style="margin: auto !important;">
+                              <input type="date" class="form-control" placeholder="started from" name="started-from" style="margin-bottom: 20px;">
+                              <input type="date" class="form-control" placeholder="ended on" name="end-date" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Course" name="course" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Name of Institution" name="institution" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Description" name="description" style="margin-bottom: 20px;">
                            </div>
+                           <hr>
                            `
                            document.querySelector('#education').appendChild(div);
                            //console.log(div);
                         }
+
+$( "form" ).submit(function( event ) {
+  data = $( this ).serializeArray();
+  console.log(data);
+  event.preventDefault();
+});
+
+document.getElementById('data').value = data; 
 
 </script>
 
