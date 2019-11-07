@@ -104,6 +104,7 @@
     </div>
 </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
 <script>
 document.getElementById('add-skill1').addEventListener('click',addSkills);
 function addSkills()
@@ -181,7 +182,8 @@ $( "form" ).submit(function( event ) {
   event.preventDefault();
 });
 
-document.getElementById('data').value = data; 
+document.getElementById('data').value = JSON.stringify(data); 
+//console.log(JSON.stringify(data));
 
 </script>
 

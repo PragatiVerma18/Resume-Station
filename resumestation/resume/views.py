@@ -10,8 +10,10 @@ def home(request):
 @login_required
 def create(request):
   if request.method == 'POST':
-    data = request.POST['data']
-    y = json.loads(data)
-    print(y)
-  
-  return render(request, 'resume/create.html')
+    data = request.POST['username']
+    print(data)
+    context = {}
+    return redirect(request, 'resume/resume.html', context)
+  else:
+    return render(request, 'resume/create.html')
+
