@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+{% if error %}
+<div class="alert alert-danger" role="alert" style="margin-top: 30px;">
+    <strong>{{error}}</strong> 
+  </div>
+  {% endif %}
+
+<section class="testimonial py-5" id="testimonial">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-4 py-5 bg-dark text-white text-center ">
+                <div class=" ">
+                    <div class="card-body">
+                        <img src="{% static 'dart-board.png' %}" style="width:30%">
+                        <h2 class="py-3">Create Your Resume</h2>
+                        <p>"If opportunity doesn’t knock, build a door."
+
+                           -Milton Berle
+</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 py-5 border text-center">
+                <h4 class="pb-4">Please fill with your details</h4>
+                <form action="{% url 'home' %}" method="POST">
+                        {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6 pb-3" style="margin: auto;">
+                          <input id="Full Name" name="username" placeholder="User Name" class="form-control" type="text" style="margin-bottom: 20px;">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6 pb-3" style="margin: auto;">
+                          <input type="title" class="form-control" placeholder="Title" name="title" style="margin-bottom: 20px;">
+                        </div>
+                      </div>
+                      <div class="form-row">
+                            <div class="form-group col-md-6 pb-3" style="margin: auto;">
+                              <input type="about" class="form-control" placeholder="About" name="about" style="margin-bottom: 20px;">
+                            </div>
+                          </div>
+                          <span href="#" id="add-skill1"><i class="fa fa-plus"></i> Add a new skill</span>
+                          <div id="personal-skills">
+                          <div class="form-row">
+                           <div class="form-group col-md-6 pb-3" style="margin: auto;">
+                             <input type="text" class="form-control" placeholder="Personal Skills" name="" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Percentage" name="" style="margin-bottom: 20px;">
+                           </div>
+                         </div>
+                          </div>
+                          <span href="#" id="add-skill2"><i class="fa fa-plus"></i> Add a new skill</span>
+                          <div id="professional-skills">
+                          <div class="form-row">
+                           <div class="form-group col-md-6 pb-3" style="margin: auto;">
+                             <input type="text" class="form-control" placeholder="Professional Skills" name="" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Percentage" name="" style="margin-bottom: 20px;">
+                           </div>
+                         </div>
+                          </div>
+
+                          <span href="#" id="add-work"><i class="fa fa-plus"></i> Add a new work experience</span>
+                          <div id="work">
+                          <div class="form-row">
+                           <div class="form-group col-md-6 pb-3" style="margin: auto;">
+                             <input type="date" class="form-control" placeholder="started from" name="" style="margin-bottom: 20px;">
+                             <input type="date" class="form-control" placeholder="ended on" name="" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Company" name="" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Designation" name="" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Description" name="" style="margin-bottom: 20px;">
+                           </div>
+                         </div>
+                          </div>
+
+                          <span href="#" id="add-education"><i class="fa fa-plus"></i> Add another educational institution</span>
+                          <div id="education">
+                          <div class="form-row">
+                           <div class="form-group col-md-6 pb-3" style="margin: auto;">
+                              <input type="date" class="form-control" placeholder="started from" name="" style="margin-bottom: 20px;">
+                              <input type="date" class="form-control" placeholder="ended on" name="" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Course" name="" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Name of Institution" name="" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Description" name="" style="margin-bottom: 20px;">
+                           </div>
+                         </div>
+                          </div>
+
+                          
+                    
+                    <div class="form-row pb-3">
+                        <button type="submit" class="btn btn-danger text-center" style="margin: auto;">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+document.getElementById('add-skill1').addEventListener('click',addSkills);
+function addSkills()
+                        {
+                           var div = document.createElement('div');
+                           div.className = 'form-row';
+                           div.innerHTML = `
+                           <div class="form-group col-md-6 pb-3" style="margin: auto;">
+                             <input type="text" class="form-control" placeholder="Personal Skills" name="" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Percentage" name="" style="margin-bottom: 20px;">
+                           </div>
+                           `
+                           document.querySelector('#personal-skills').appendChild(div);
+                           //console.log(div);
+                        }
+
+document.getElementById('add-skill2').addEventListener('click',addSkills2);
+function addSkills2()
+                        {
+                           var div = document.createElement('div');
+                           div.className = 'form-row';
+                           div.innerHTML = `
+                           <div class="form-group col-md-6 pb-3" style="margin: auto;">
+                             <input type="text" class="form-control" placeholder="Professional Skills" name="" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Percentage" name="" style="margin-bottom: 20px;">
+                           </div>
+                           `
+                           document.querySelector('#professional-skills').appendChild(div);
+                           //console.log(div);
+                        }
+
+document.getElementById('add-work').addEventListener('click',addwork);
+function addwork()
+                        {
+                           var div = document.createElement('div');
+                           div.className = 'form-row';
+                           div.innerHTML = `
+                           <div class="form-group col-md-6 pb-3" style="margin: auto;">
+                             <input type="date" class="form-control" placeholder="started from" name="" style="margin-bottom: 20px;">
+                             <input type="date" class="form-control" placeholder="ended on" name="" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Company" name="" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Designation" name="" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Description" name="" style="margin-bottom: 20px;">
+                           </div>
+                           `
+                           document.querySelector('#work').appendChild(div);
+                           //console.log(div);
+                        }
+
+document.getElementById('add-education').addEventListener('click',addeducation);
+function addeducation()
+                        {
+                           var div = document.createElement('div');
+                           div.className = 'form-row';
+                           div.innerHTML = `
+                           <div class="form-group col-md-6 pb-3" style="margin: auto;">
+                              <input type="date" class="form-control" placeholder="started from" name="" style="margin-bottom: 20px;">
+                              <input type="date" class="form-control" placeholder="ended on" name="" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Course" name="" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Name of Institution" name="" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Description" name="" style="margin-bottom: 20px;">
+                           </div>
+                           `
+                           document.querySelector('#education').appendChild(div);
+                           //console.log(div);
+                        }
+
+</script>
+
+{% endblock %}
