@@ -87,15 +87,15 @@
                ========================================== -->
             <header style="background: none !important;">
                <div class="col-md-12 extra-offset-md">
-                  <button class="btn btn-transparent">
+              <!--    <button class="btn btn-transparent">
                      <img src="https://image.flaticon.com/icons/svg/60/60721.svg" alt="" height="30" width="30">
                      Download resume
-                  </button>
+                  </button> -->
                   <div class="resume-title">
-                     <h2>Matty</h2>
+                     <h2>{{ username }}</h2>
                      <div class="resume-designation extra-offset-md">
                         <span class="border"></span>
-                        <span>UX/UI Designer</span>
+                        <span>{{ title }}</span>
                      </div>
                   </div>
                </div>
@@ -108,8 +108,7 @@
                <div class="col-md-offset-1 col-md-10">
                   <h2 class="title">About Me</h2>
                   <hr>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis volutpat nec tortor a eleifend. Proin nec ligula vel sem luctus porttitor. Cras at interdum libero. Donec nec mauris velit.</p>
-                  <p>Vestibulum eu eros tortor. Aliquam cursus nunc mauris, nec congue tortor pretium et. Pellentesque feugiat justo in metus laoreet consectetur. Mauris at tempor ipsum, sit amet etae posuere. Nunc auctor sollicitudin sem ut molestie. Pellentesque ligula sapien, ullamcorper et tempor id, congue ac sapien.</p>
+                  <p>{{ about }}</p>
                </div>
             </section>
             <!-- =========================================
@@ -123,8 +122,8 @@
                      <!--skill-->
                      <ul class="skill" id="skills">
                         <li>
-                           <p>Communication</p>
-                           <div class="skill-bar wow slideInLeft" data-width="85">
+                           <p>{{ personalskills }}</p>
+                           <div class="skill-bar wow slideInLeft" data-width="{{ personalskillspercentage }}">
                               <span class="skill-tip"></span>
                            </div>
                         </li>
@@ -155,8 +154,8 @@
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis volutpat nec.</p>
                   <ul class="skill-dots" id="skill-dots">
                      <li class="skill">
-                        <span class="skill-title">Create Wireframe</span>
-                        <div class="skill-progress" data-score="9"></div>
+                        <span class="skill-title">{{professionalskills}}</span>
+                        <div class="skill-progress" data-score="{{professionalskillspercentage}}"></div>
                      </li>
                      <li class="skill">
                         <span class="skill-title">Axure</span>
@@ -180,7 +179,7 @@
             <!-- =========================================
                WORK
                ========================================== -->
-            <section id="experience">
+            <section id="experience" style="margin-bottom: 70px;">
                <div class="col-md-offset-1 col-md-5  offset-lt">
                   <h2 class="title">WORK EXPERIENCE</h2>
                   <hr>
@@ -189,11 +188,11 @@
                         <div class="timeline-entry-inner">
                            <div class="timeline-icon"></div>
                            <div class="timeline-label">
-                              JANUARY, 2013 - PRESENT
+                              {{workstarted}} - {{workenddate}}
                            </div>
-                           <h3 class="company">Flash media inc.</h3>
-                           <p class="designation">SENIOR UX/UI DESIGNER </p>
-                           <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit maxime laborum sequi, magni earum quo soluta sint velit numquam, ipsum illum! Nostrum possimus illo architecto praesentium ut aliquam dolorem.</p>
+                           <h3 class="company">{{company}}</h3>
+                           <p class="designation">{{designation}}</p>
+                           <p class="description">{{description}}</p>
                         </div>
                      </article>
                      <article class="timeline-entry">
@@ -228,11 +227,11 @@
                         <div class="timeline-entry-inner">
                            <div class="timeline-icon"></div>
                            <div class="timeline-label">
-                              JANUARY, 2007
+                              {{started}} - {{enddate}}
                            </div>
-                           <h3 class="company">Master Degree Of Design</h3>
-                           <p class="designation">UNIVERSITY OF DESIGN</p>
-                           <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit maxime laborum sequi, magni earum quo soluta sint velit numquam, ipsum illum! Nostrum possimus illo architecto praesentium ut aliquam dolorem.</p>
+                           <h3 class="company">{{course}}</h3>
+                           <p class="designation">{{institution}}</p>
+                           <p class="description">{{educationdescription}}</p>
                         </div>
                      </article>
                      <article class="timeline-entry">
@@ -263,7 +262,7 @@
             <!-- =========================================
                PORTFOLIO
                ========================================== -->
-            <section id="portfolio">
+           <!-- <section id="portfolio">
                <div class="col-md-offset-1 col-md-10">
                   <h2 class="title">PORTFOLIO</h2>
                   <hr>
@@ -271,7 +270,7 @@
                   <div class="porfolio-wrapper">
                      <div class="portfolioFilter">
                         <ul>
-                          <!-- <li>
+                           <li>
                               <a href="#" data-filter="*"  class="current">All</a>
                            </li>
                            <li>
@@ -285,7 +284,7 @@
                            </li>
                            <li>
                               <a href="#" data-filter=".site-template">Site Template</a>
-                           </li>-->
+                           </li>
                         </ul>
                      </div>
                      <ul class="portfolioContainer gallery">
@@ -412,7 +411,7 @@
                      </ul>
                   </div>
                </div>
-            </section>
+            </section> -->
 
 
          </div>

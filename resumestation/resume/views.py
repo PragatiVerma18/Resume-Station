@@ -10,10 +10,29 @@ def home(request):
 @login_required
 def create(request):
   if request.method == 'POST':
-    data = request.POST['username']
-    print(data)
-    context = {}
-    return redirect(request, 'resume/resume.html', context)
+    username = request.POST['username']
+    title = request.POST['title']
+    about = request.POST['about']
+    personal_skills = request.POST['personal-skills']
+    personal_skills_percentage = request.POST['personal-skills-percentage']
+    professional_skills = request.POST['professional-skills']
+    professional_skills_percentage = request.POST['professional-skills-percentage']
+    work_started = request.POST['work-started'] 
+    work_end_date = request.POST['work-end-date']
+    company = request.POST['company']
+    designation = request.POST['designation']
+    description = request.POST['description']
+    started = request.POST['started']
+    end_date = request.POST['end-date']
+    course = request.POST['course']
+    institution = request.POST['course']
+    education_description = request.POST['education-description']
+
+    context = {'username': username, 'title':title, 'about':about, 'personalskills':personal_skills, 'personalskillspercentage':personal_skills_percentage, 'professionalskills':professional_skills, 'professionalskillspercentage': professional_skills_percentage, 'workstarted':work_started, 'workenddate':work_end_date, 'company':company, 'designation':designation, 'description':description, 'started':started, 'enddate':end_date, 'course': course, 'institution':institution, 'educationdescription':education_description }
+    
+    return render(request, 'resume/resume.html', context)
   else:
     return render(request, 'resume/create.html')
 
+def resume(request):
+  return render(request, 'resume/resume.html')
