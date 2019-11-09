@@ -36,3 +36,13 @@ def create(request):
 
 def resume(request):
   return render(request, 'resume/resume.html')
+
+from django.http import HttpResponse
+from django.views.generic import View
+
+from .utils import render_to_pdf #created in step 4
+
+class GeneratePdf(View):
+    def get(self, request, *args, **kwargs):
+        pdf = render_to_pdf('pdf/resume.html')
+        return HttpResponse(pdf, content_type='application/pdf')
