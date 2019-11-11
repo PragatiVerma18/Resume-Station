@@ -51,7 +51,7 @@
                             <span class="message-1"></span>
                              <input type="text" class="form-control skill-input" placeholder="Personal Skills" name="skill-input" style="margin-bottom: 20px;">
                              <input type="text" class="form-control skill-input-level" placeholder="Level" name="skill-input-level" style="margin-bottom: 20px;">
-                             <button type="submit" class="js-skill-btn"><i class="fa fa-plus"></i>Add Skill</button>
+                             <button class="js-skill-btn"><i class="fa fa-plus"></i>Add Skill</button>
                            </div>
                          </div>
                           </div>
@@ -62,7 +62,7 @@
                               <span class="message-2"></span>
                              <input type="text" class="form-control professional-skills" placeholder="Professional Skills" name="professional-skills" style="margin-bottom: 20px;">
                              <input type="text" class="form-control professional-skills-level" placeholder="Level" name="professional-skills-level" style="margin-bottom: 20px;">
-                             <button type="submit" class="js-skill-professional-btn"><i class="fa fa-plus"></i>Add Skill</button>
+                             <button class="js-skill-professional-btn"><i class="fa fa-plus"></i>Add Skill</button>
                            </div>
                          </div>
                           </div>
@@ -78,7 +78,7 @@
                              <input type="text" class="form-control company" placeholder="Company" name="company" style="margin-bottom: 20px;">
                              <input type="text" class="form-control designation" placeholder="Designation" name="designation" style="margin-bottom: 20px;">
                              <input type="text" class="form-control description" placeholder="Description" name="description" style="margin-bottom: 20px;">
-                             <button type="submit" class="js-work-btn"><i class="fa fa-plus"></i>Add Work Experience</button>
+                             <button class="js-work-btn"><i class="fa fa-plus"></i>Add Work Experience</button>
                            </div>
 
                          </div>
@@ -94,7 +94,7 @@
                              <input type="text" class="form-control course" placeholder="Course" name="course" style="margin-bottom: 20px;">
                              <input type="text" class="form-control institution" placeholder="Name of Institution" name="institution" style="margin-bottom: 20px;">
                              <input type="text" class="form-control education-description" placeholder="Description" name="education-description" style="margin-bottom: 20px;">
-                             <button type="submit" class="js-education-btn"><i class="fa fa-plus"></i>Add Education</button>
+                             <button class="js-education-btn"><i class="fa fa-plus"></i>Add Education</button>
                            </div>
                           
                          </div>
@@ -153,14 +153,15 @@ const elemSubmitBtn = document.querySelector(".js-submit-btn");
 
 elemSkillBtn.addEventListener("click", function(event) {
   event.preventDefault();
-  if(data.skills1.length == 0 || data.skills1_level.length == 0)
-  {
-    document.getElementsByClassName('skill-input')[0].setAttribute("required", "true");  
-    console.log(document.getElementsByClassName('skill-input')[0]);
-    document.getElementsByClassName('skill-input-level')[0].required = true; 
-    }
   const newSkill = elemSkillInput.value;
   const newSkillLevel = elemSkillLevelInput.value;
+  if (newSkill == "" || newSkillLevel == "") {
+  document.querySelector('.message-1').innerHTML = `
+    <div class="alert alert-danger" role="alert" style="margin-top: 30px;">
+    <strong>Please enter complete information.</strong> 
+    </div>
+    `;
+  } else {
   data.skills1.push(newSkill);
   data.skills1_level.push(newSkillLevel);
   elemHiddenInput.value = JSON.stringify(data);
@@ -170,7 +171,7 @@ elemSkillBtn.addEventListener("click", function(event) {
     <div class="alert alert-success" role="alert" style="margin-top: 30px;">
     <strong>Added ${ newSkill }.</strong> 
     </div>
-    `;
+    `;}
 });
 
 
@@ -187,7 +188,10 @@ const elemHiddenInput2 = document.querySelector('input[name="hidden-input-skills
 
 elemSkill2Btn.addEventListener("click", function(event) {
   event.preventDefault();
-  if(data1.skill2.length == 0 || data1.skills2_level.length ==0)
+  const newSkill = elemSkill2Input.value;
+  const newSkillLevel = elemSkill2LevelInput.value;
+
+  if( newSkill == "" || newSkillLevel == "" )
   {
     document.querySelector('.message-2').innerHTML = `
     <div class="alert alert-danger" role="alert" style="margin-top: 30px;">
@@ -197,8 +201,6 @@ elemSkill2Btn.addEventListener("click", function(event) {
   }
   else
   {
-  const newSkill = elemSkill2Input.value;
-  const newSkillLevel = elemSkill2LevelInput.value;
   data1.skills2.push(newSkill);
   data1.skills2_level.push(newSkillLevel);
   elemHiddenInput2.value = JSON.stringify(data1);
@@ -230,9 +232,14 @@ const elemHiddenInput4 = document.querySelector('input[name="hidden-input-educat
 
 elemEduBtn.addEventListener("click", function(event) {
   event.preventDefault();
-  if(education.start.length == 0 || education.end.length == 0 || education.course.length == 0 || education.institution.length == 0 || education.description.length == 0)
+  const newEdustarted = elemEduInput1.value;
+  const newEduend = elemEduInput2.value;
+  const newCourse = elemEduInput3.value;
+  const newInstitution = elemEduInput4.value;
+  const newEduDescription = elemEduInput5.value;
+  if(newEdustarted == "" || newEduend == "" || newCourse == "" || newInstitution == "" || newEduDescription == "")
   {
-    document.querySelector('.message-3').innerHTML = `
+    document.querySelector('.message-4').innerHTML = `
     <div class="alert alert-danger" role="alert" style="margin-top: 30px;">
     <strong>You have not entered the required data.</strong> 
     </div>
@@ -240,11 +247,6 @@ elemEduBtn.addEventListener("click", function(event) {
   }
   else
   {
-  const newEdustarted = elemEduInput1.value;
-  const newEduend = elemEduInput2.value;
-  const newCourse = elemEduInput3.value;
-  const newInstitution = elemEduInput4.value;
-  const newEduDescription = elemEduInput5.value;
 
   education.start.push(newEdustarted);
   education.end.push(newEduend);
@@ -258,7 +260,7 @@ elemEduBtn.addEventListener("click", function(event) {
   elemEduInput3.value = "";
   elemEduInput4.value = "";
   elemEduInput5.value = "";
-  document.querySelector('.message-3').innerHTML = `
+  document.querySelector('.message-4').innerHTML = `
     <div class="alert alert-success" role="alert" style="margin-top: 30px;">
     <strong>Added ${ newCourse }.</strong> 
     </div>
@@ -284,9 +286,15 @@ const elemHiddenInput3 = document.querySelector('input[name="hidden-input-work"]
 
 elemWorkBtn.addEventListener("click", function(event) {
   event.preventDefault();
-  if(work.company.length == 0 || work.start.length == 0 || work.end.length == 0 || work.designation.length == 0 || work.description.length == 0)
+  const newWorkstarted = elemWorkInput1.value;
+  const newWorkend = elemWorkInput2.value;
+  const newCompany = elemWorkInput3.value;
+  const newDesignation = elemWorkInput4.value;
+  const newWorkDescription = elemWorkInput5.value;
+
+  if(newWorkstarted == "" || newWorkend == "" || newCompany == "" || newDesignation == "" || newWorkDescription == "")
   {
-    document.querySelector('.message-4').innerHTML = `
+    document.querySelector('.message-3').innerHTML = `
     <div class="alert alert-danger" role="alert" style="margin-top: 30px;">
     <strong>You have not entered the required data.</strong> 
     </div>
@@ -294,12 +302,6 @@ elemWorkBtn.addEventListener("click", function(event) {
   }
   else
   {
-  const newWorkstarted = elemWorkInput1.value;
-  const newWorkend = elemWorkInput2.value;
-  const newCompany = elemWorkInput3.value;
-  const newDesignation = elemWorkInput4.value;
-  const newWorkDescription = elemWorkInput5.value;
-
   work.start.push(newWorkstarted);
   work.end.push(newWorkend);
   work.company.push(newCompany);
@@ -312,7 +314,7 @@ elemWorkBtn.addEventListener("click", function(event) {
   elemWorkInput3.value = "";
   elemWorkInput4.value = "";
   elemWorkInput5.value = "";
-  document.querySelector('.message-4').innerHTML = `
+  document.querySelector('.message-3').innerHTML = `
     <div class="alert alert-success" role="alert" style="margin-top: 30px;">
     <strong>Added ${ newCompany }.</strong> 
     </div>
