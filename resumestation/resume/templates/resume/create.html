@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-8 py-5 border text-center">
                 <h4 class="pb-4">Please fill with your details</h4>
-                <form action="{% url 'create' %}" method="POST" id='form' onsubmit="return submitform()">
+                <form class="js-resume-form">
                         {% csrf_token %}
                     <div class="form-row">
                         <div class="form-group col-md-6 pb-3" style="margin: auto;">
@@ -44,62 +44,87 @@
                             </div>
                           </div>
                           <hr>
-                          <span href="#" id="add-skill1"><i class="fa fa-plus"></i> Add a new skill</span>
+                        <!--  <span href="#" id="add-skill1"><i class="fa fa-plus"></i> Add a new skill</span>-->
                           <div id="personal-skills">
                           <div class="form-row">
                            <div class="form-group col-md-6 pb-3" style="margin: auto;">
-                             <input type="text" class="form-control" placeholder="Personal Skills" name="personal-skills" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Percentage" name="personal-skills-percentage" style="margin-bottom: 20px;">
+                            <span class="message-1"></span>
+                             <input type="text" class="form-control" placeholder="Personal Skills" name="skill-input" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Level" name="skill-input-level" style="margin-bottom: 20px;">
+                             <button type="submit" class="js-skill-btn"><i class="fa fa-plus"></i>Add Skill</button>
                            </div>
                          </div>
                           </div>
                           <hr>
-                          <span href="#" id="add-skill2"><i class="fa fa-plus"></i> Add a new skill</span>
                           <div id="professional-skills">
                           <div class="form-row">
                            <div class="form-group col-md-6 pb-3" style="margin: auto;">
+                              <span class="message-2"></span>
                              <input type="text" class="form-control" placeholder="Professional Skills" name="professional-skills" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Percentage" name="professional-skills-percentage" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control" placeholder="Level" name="professional-skills-level" style="margin-bottom: 20px;">
+                             <button type="submit" class="js-skill-professional-btn"><i class="fa fa-plus"></i>Add Skill</button>
                            </div>
                          </div>
                           </div>
                           <hr>
 
-                          <span href="#" id="add-work"><i class="fa fa-plus"></i> Add a new work experience</span>
+                         
                           <div id="work">
                           <div class="form-row">
                            <div class="form-group col-md-6 pb-3" style="margin: auto;">
+                              <span class="message-3"></span>
                              <input type="date" class="form-control" placeholder="started from" name="work-started" style="margin-bottom: 20px;">
                              <input type="date" class="form-control" placeholder="ended on" name="work-end-date" style="margin-bottom: 20px;">
                              <input type="text" class="form-control" placeholder="Company" name="company" style="margin-bottom: 20px;">
                              <input type="text" class="form-control" placeholder="Designation" name="designation" style="margin-bottom: 20px;">
                              <input type="text" class="form-control" placeholder="Description" name="description" style="margin-bottom: 20px;">
+                             <button type="submit" class="js-work-btn"><i class="fa fa-plus"></i>Add Work Experience</button>
                            </div>
+
                          </div>
                           </div>
                           <hr>
 
-                          <span href="#" id="add-education"><i class="fa fa-plus"></i> Add another educational institution</span>
                           <div id="education">
                           <div class="form-row">
                            <div class="form-group col-md-6 pb-3" style="margin: auto;">
+                              <span class="message-4"></span>
                               <input type="date" class="form-control" placeholder="started from" name="started" style="margin-bottom: 20px;">
                               <input type="date" class="form-control" placeholder="ended on" name="end-date" style="margin-bottom: 20px;">
                              <input type="text" class="form-control" placeholder="Course" name="course" style="margin-bottom: 20px;">
                              <input type="text" class="form-control" placeholder="Name of Institution" name="institution" style="margin-bottom: 20px;">
                              <input type="text" class="form-control" placeholder="Description" name="education-description" style="margin-bottom: 20px;">
+                             <button type="submit" class="js-education-btn"><i class="fa fa-plus"></i>Add Education</button>
                            </div>
+                          
                          </div>
                           </div>
                           <hr>
-                          
-                    
-                    <div class="form-row pb-3">
-                        <button type="submit" class="btn btn-danger text-center" style="margin: auto;">Submit</button>
-                        <input type="hidden" name="data" id="data">
-                    </div>
 
                 </form>
+
+              <!--  <form class="js-resume-form">
+                  <label>
+                    <h2>Skills</h2>
+                    <input type="text" name="skill-input" placeholder="Enter New Skill" />
+                  </label>
+                  <button type="submit" class="js-skill-btn">Add Skill</button>
+                </form>
+                <br /> -->
+            
+                <!-- Submit this form to Django -->
+                <form class="js-resume-form" action="{% url 'create' %}" method="POST">
+                    {% csrf_token %}
+                  <input type="hidden" name="hidden-input-username" />
+                  <input type="hidden" name="hidden-input-title" />
+                  <input type="hidden" name="hidden-input-about" /> 
+                  <input type="hidden" name="hidden-input-skills1" />
+                  <input type="hidden" name="hidden-input-skills2" />
+                  <input type="hidden" name="hidden-input-work" />
+                  <input type="hidden" name="hidden-input-education" />
+                  <button type="submit" class="js-submit-btn">SUBMIT FORM</button>
+                </form>
+
             </div>
         </div>
     </div>
@@ -107,86 +132,198 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
 <script>
-document.getElementById('add-skill1').addEventListener('click',addSkills);
-function addSkills()
-                        {
-                           var div = document.createElement('div');
-                           div.className = 'form-row';
-                           div.innerHTML = `
-                           <div class="form-group col-md-6 pb-3" style="margin: auto !important;">
-                             <input type="text" class="form-control" placeholder="Personal Skills" name="personal-skills" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Percentage" name="personal-skills-percentage" style="margin-bottom: 20px;">
-                           </div>
-                           <hr>
-                           `
-                           document.querySelector('#personal-skills').appendChild(div);
-                           //console.log(div);
-                        }
 
-document.getElementById('add-skill2').addEventListener('click',addSkills2);
-function addSkills2()
-                        {
-                           var div = document.createElement('div');
-                           div.className = 'form-row';
-                           div.innerHTML = `
-                           <div class="form-group col-md-6 pb-3" style="margin: auto !important;">
-                             <input type="text" class="form-control" placeholder="Professional Skills" name="professional-skills" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Percentage" name="professional-skills-percentage" style="margin-bottom: 20px;">
-                           </div>
-                           <hr>
-                           `
-                           document.querySelector('#professional-skills').appendChild(div);
-                           //console.log(div);
-                        }
+document.querySelector('input[name="hidden-input-username"]').value = document.querySelector('input[name="username"]');
+document.querySelector('input[name="hidden-input-title"]').value = document.querySelector('input[name="title"]');
+document.querySelector('input[name="hidden-input-about"]').value = document.querySelector('input[name="about"]');
 
-document.getElementById('add-work').addEventListener('click',addwork);
-function addwork()
-                        {
-                           var div = document.createElement('div');
-                           div.className = 'form-row';
-                           div.innerHTML = `
-                           <div class="form-group col-md-6 pb-3" style="margin: auto !important;">
-                             <input type="date" class="form-control" placeholder="started from" name="work-started" style="margin-bottom: 20px;">
-                             <input type="date" class="form-control" placeholder="ended on" name="work-end-date" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Company" name="company" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Designation" name="designation" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Description" name="description" style="margin-bottom: 20px;">
-                           </div>
-                           <hr>
-                           `
-                           document.querySelector('#work').appendChild(div);
-                           //console.log(div);
-                        }
+const data = {
+  skills1: [], 
+  skills1_level: []
+};
 
-document.getElementById('add-education').addEventListener('click',addeducation);
-function addeducation()
-                        {
-                           var div = document.createElement('div');
-                           div.className = 'form-row';
-                           div.innerHTML = `
-                           <div class="form-group col-md-6 pb-3" style="margin: auto !important;">
-                              <input type="date" class="form-control" placeholder="started from" name="started" style="margin-bottom: 20px;">
-                              <input type="date" class="form-control" placeholder="ended on" name="end-date" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Course" name="course" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Name of Institution" name="institution" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Description" name="education-description" style="margin-bottom: 20px;">
-                           </div>
-                           <hr>
-                           `
-                           document.querySelector('#education').appendChild(div);
-                           //console.log(div);
-                        }
 
-const form = document.querySelector('#form');
+const elemSkillInput = document.querySelector('input[name="skill-input"]');
+const elemSkillLevelInput = document.querySelector('input[name="skill-input-level"]')
+const elemSkillBtn = document.querySelector(".js-skill-btn");
 
-function submitform()
-{
-  let formData = new FormData(form);
-  //console.log(JSON.stringify(Object.fromEntries(formData)));
-  data = document.getElementById('data').value = JSON.stringify(Object.fromEntries(formData));
-  console.log(data);
+const elemHiddenInput = document.querySelector('input[name="hidden-input-skills1"]');
+const elemHiddenInputSkillLevel = document.querySelector('input[name="hidden-input-skills1-level"]');
+const elemSubmitBtn = document.querySelector(".js-submit-btn");
+
+elemSkillBtn.addEventListener("click", function(event) {
+  event.preventDefault();
+  if(data.skills1.length == 0 || data.skills1_level.length == 0)
+  {
+    document.querySelector('.message-1').innerHTML = `
+    <div class="alert alert-danger" role="alert" style="margin-top: 30px;">
+    <strong>Please add a skill.</strong> 
+    </div>
+    `;
+    }
+  else
+  {
+  const newSkill = elemSkillInput.value;
+  const newSkillLevel = elemSkillLevelInput.value;
+  data.skills1.push(newSkill);
+  data.skills1_level.push(newSkillLevel);
+  elemHiddenInput.value = JSON.stringify(data);
+  elemSkillLevelInput.value = "";
+  elemSkillInput.value = "";
+  document.querySelector('.message-1').innerHTML = `
+    <div class="alert alert-success" role="alert" style="margin-top: 30px;">
+    <strong>Added ${ newSkill }.</strong> 
+    </div>
+    `;
+    }
+});
+
+
+const data1 = {
+  skills2 : [],
+  skills2_level: []
 }
 
+const elemSkill2Input = document.querySelector('input[name="professional-skills"]');
+const elemSkill2LevelInput = document.querySelector('input[name="professional-skills-level"]')
+const elemSkill2Btn = document.querySelector(".js-skill-professional-btn");
+
+const elemHiddenInput2 = document.querySelector('input[name="hidden-input-skills2"]');
+
+elemSkill2Btn.addEventListener("click", function(event) {
+  event.preventDefault();
+  if(data1.skill2.length == 0 || data1.skills2_level.length ==0)
+  {
+    document.querySelector('.message-2').innerHTML = `
+    <div class="alert alert-danger" role="alert" style="margin-top: 30px;">
+    <strong>Please add a skill.</strong> 
+    </div>
+    `;
+  }
+  else
+  {
+  const newSkill = elemSkill2Input.value;
+  const newSkillLevel = elemSkill2LevelInput.value;
+  data1.skills2.push(newSkill);
+  data1.skills2_level.push(newSkillLevel);
+  elemHiddenInput2.value = JSON.stringify(data1);
+  elemSkill2LevelInput.value = "";
+  elemSkill2Input.value = "";
+  document.querySelector('.message-2').innerHTML = `
+    <div class="alert alert-success" role="alert" style="margin-top: 30px;">
+    <strong>Added ${ newSkill }.</strong> 
+    </div>
+    `;
+  }
+});
+
+const education = {
+  start: [],
+  end: [],
+  course: [],
+  institution: [],
+  description: []
+}
+
+const elemEduInput1 = document.querySelector('input[name = "started"]');
+const elemEduInput2 = document.querySelector('input[name = "end-date"]');
+const elemEduInput3 = document.querySelector('input[name = "course"]');
+const elemEduInput4 = document.querySelector('input[name = "institution"]');
+const elemEduInput5 = document.querySelector('input[name = "education-description"]');
+const elemEduBtn = document.querySelector('.js-education-btn');
+const elemHiddenInput4 = document.querySelector('input[name="hidden-input-education"]');
+
+elemEduBtn.addEventListener("click", function(event) {
+  event.preventDefault();
+  if(education.start.length == 0 || education.end.length == 0 || education.course.length == 0 || education.institution.length == 0 || education.description.length == 0)
+  {
+    document.querySelector('.message-3').innerHTML = `
+    <div class="alert alert-danger" role="alert" style="margin-top: 30px;">
+    <strong>You have not entered the required data.</strong> 
+    </div>
+    `;
+  }
+  else
+  {
+  const newEdustarted = elemEduInput1.value;
+  const newEduend = elemEduInput2.value;
+  const newCourse = elemEduInput3.value;
+  const newInstitution = elemEduInput4.value;
+  const newEduDescription = elemEduInput5.value;
+
+  education.start.push(newEdustarted);
+  education.end.push(newEduend);
+  education.course.push(newCourse);
+  education.institution.push(newInstitution);
+  education.description.push(newEduDescription);
+
+  elemHiddenInput4.value = JSON.stringify(education);
+  elemEduInput1.value = "";
+  elemEduInput2.value = "";
+  elemEduInput3.value = "";
+  elemEduInput4.value = "";
+  elemEduInput5.value = "";
+  document.querySelector('.message-3').innerHTML = `
+    <div class="alert alert-success" role="alert" style="margin-top: 30px;">
+    <strong>Added ${ newCourse }.</strong> 
+    </div>
+    `;
+  }
+});
+
+const work = {
+  start: [],
+  end: [],
+  company: [],
+  designation: [],
+  description: []
+}
+
+const elemWorkInput1 = document.querySelector('input[name = "work-started"]');
+const elemWorkInput2 = document.querySelector('input[name = "work-end-date"]');
+const elemWorkInput3 = document.querySelector('input[name = "company"]');
+const elemWorkInput4 = document.querySelector('input[name = "designation"]');
+const elemWorkInput5 = document.querySelector('input[name = "description"]');
+const elemWorkBtn = document.querySelector('.js-work-btn');
+const elemHiddenInput3 = document.querySelector('input[name="hidden-input-work"]');
+
+elemWorkBtn.addEventListener("click", function(event) {
+  event.preventDefault();
+  if(work.company.length == 0 || work.start.length == 0 || work.end.length == 0 || work.designation.length == 0 || work.description.length == 0)
+  {
+    document.querySelector('.message-4').innerHTML = `
+    <div class="alert alert-danger" role="alert" style="margin-top: 30px;">
+    <strong>You have not entered the required data.</strong> 
+    </div>
+    `;
+  }
+  else
+  {
+  const newWorkstarted = elemWorkInput1.value;
+  const newWorkend = elemWorkInput2.value;
+  const newCompany = elemWorkInput3.value;
+  const newDesignation = elemWorkInput4.value;
+  const newWorkDescription = elemWorkInput5.value;
+
+  work.start.push(newWorkstarted);
+  work.end.push(newWorkend);
+  work.company.push(newCompany);
+  work.designation.push(newDesignation);
+  work.description.push(newWorkDescription);
+
+  elemHiddenInput3.value = JSON.stringify(work);
+  elemWorkInput1.value = "";
+  elemWorkInput2.value = "";
+  elemWorkInput3.value = "";
+  elemWorkInput4.value = "";
+  elemWorkInput5.value = "";
+  document.querySelector('.message-4').innerHTML = `
+    <div class="alert alert-success" role="alert" style="margin-top: 30px;">
+    <strong>Added ${ newCompany }.</strong> 
+    </div>
+    `;
+  }
+});
 
 </script>
 
