@@ -49,8 +49,8 @@
                           <div class="form-row">
                            <div class="form-group col-md-6 pb-3" style="margin: auto;">
                             <span class="message-1"></span>
-                             <input type="text" class="form-control" placeholder="Personal Skills" name="skill-input" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Level" name="skill-input-level" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control skill-input" placeholder="Personal Skills" name="skill-input" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control skill-input-level" placeholder="Level" name="skill-input-level" style="margin-bottom: 20px;">
                              <button type="submit" class="js-skill-btn"><i class="fa fa-plus"></i>Add Skill</button>
                            </div>
                          </div>
@@ -60,8 +60,8 @@
                           <div class="form-row">
                            <div class="form-group col-md-6 pb-3" style="margin: auto;">
                               <span class="message-2"></span>
-                             <input type="text" class="form-control" placeholder="Professional Skills" name="professional-skills" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Level" name="professional-skills-level" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control professional-skills" placeholder="Professional Skills" name="professional-skills" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control professional-skills-level" placeholder="Level" name="professional-skills-level" style="margin-bottom: 20px;">
                              <button type="submit" class="js-skill-professional-btn"><i class="fa fa-plus"></i>Add Skill</button>
                            </div>
                          </div>
@@ -73,11 +73,11 @@
                           <div class="form-row">
                            <div class="form-group col-md-6 pb-3" style="margin: auto;">
                               <span class="message-3"></span>
-                             <input type="date" class="form-control" placeholder="started from" name="work-started" style="margin-bottom: 20px;">
-                             <input type="date" class="form-control" placeholder="ended on" name="work-end-date" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Company" name="company" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Designation" name="designation" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Description" name="description" style="margin-bottom: 20px;">
+                             <input type="date" class="form-control work-started" placeholder="started from" name="work-started" style="margin-bottom: 20px;">
+                             <input type="date" class="form-control work-end-date" placeholder="ended on" name="work-end-date" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control company" placeholder="Company" name="company" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control designation" placeholder="Designation" name="designation" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control description" placeholder="Description" name="description" style="margin-bottom: 20px;">
                              <button type="submit" class="js-work-btn"><i class="fa fa-plus"></i>Add Work Experience</button>
                            </div>
 
@@ -89,11 +89,11 @@
                           <div class="form-row">
                            <div class="form-group col-md-6 pb-3" style="margin: auto;">
                               <span class="message-4"></span>
-                              <input type="date" class="form-control" placeholder="started from" name="started" style="margin-bottom: 20px;">
-                              <input type="date" class="form-control" placeholder="ended on" name="end-date" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Course" name="course" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Name of Institution" name="institution" style="margin-bottom: 20px;">
-                             <input type="text" class="form-control" placeholder="Description" name="education-description" style="margin-bottom: 20px;">
+                              <input type="date" class="form-control started" placeholder="started from" name="started" style="margin-bottom: 20px;">
+                              <input type="date" class="form-control end-date" placeholder="ended on" name="end-date" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control course" placeholder="Course" name="course" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control institution" placeholder="Name of Institution" name="institution" style="margin-bottom: 20px;">
+                             <input type="text" class="form-control education-description" placeholder="Description" name="education-description" style="margin-bottom: 20px;">
                              <button type="submit" class="js-education-btn"><i class="fa fa-plus"></i>Add Education</button>
                            </div>
                           
@@ -133,9 +133,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
 <script>
 
-document.querySelector('input[name="hidden-input-username"]').value = document.querySelector('input[name="username"]');
-document.querySelector('input[name="hidden-input-title"]').value = document.querySelector('input[name="title"]');
-document.querySelector('input[name="hidden-input-about"]').value = document.querySelector('input[name="about"]');
+document.querySelector('input[name="hidden-input-username"]').value = document.querySelector('input[name="username"]').value;
+document.querySelector('input[name="hidden-input-title"]').value = document.querySelector('input[name="title"]').value;
+document.querySelector('input[name="hidden-input-about"]').value = document.querySelector('input[name="about"]').value;
 
 const data = {
   skills1: [], 
@@ -155,14 +155,10 @@ elemSkillBtn.addEventListener("click", function(event) {
   event.preventDefault();
   if(data.skills1.length == 0 || data.skills1_level.length == 0)
   {
-    document.querySelector('.message-1').innerHTML = `
-    <div class="alert alert-danger" role="alert" style="margin-top: 30px;">
-    <strong>Please add a skill.</strong> 
-    </div>
-    `;
+    document.getElementsByClassName('skill-input')[0].setAttribute("required", "true");  
+    console.log(document.getElementsByClassName('skill-input')[0]);
+    document.getElementsByClassName('skill-input-level')[0].required = true; 
     }
-  else
-  {
   const newSkill = elemSkillInput.value;
   const newSkillLevel = elemSkillLevelInput.value;
   data.skills1.push(newSkill);
@@ -175,7 +171,6 @@ elemSkillBtn.addEventListener("click", function(event) {
     <strong>Added ${ newSkill }.</strong> 
     </div>
     `;
-    }
 });
 
 
