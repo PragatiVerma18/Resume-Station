@@ -161,6 +161,10 @@ elemSkillBtn.addEventListener("click", function(event) {
     <strong>Please enter complete information.</strong> 
     </div>
     `;
+    setTimeout(function(){
+     document.querySelector(".message-1").innerHTML = ""
+}, 2000);
+
   } else {
   data.skills1.push(newSkill);
   data.skills1_level.push(newSkillLevel);
@@ -171,7 +175,11 @@ elemSkillBtn.addEventListener("click", function(event) {
     <div class="alert alert-success" role="alert" style="margin-top: 30px;">
     <strong>Added ${ newSkill }.</strong> 
     </div>
-    `;}
+    `;
+    setTimeout(function(){
+     document.querySelector(".message-1").innerHTML = ""
+}, 2000);
+    }
 });
 
 
@@ -195,9 +203,12 @@ elemSkill2Btn.addEventListener("click", function(event) {
   {
     document.querySelector('.message-2').innerHTML = `
     <div class="alert alert-danger" role="alert" style="margin-top: 30px;">
-    <strong>Please add a skill.</strong> 
+    <strong>Please enter complete information.</strong> 
     </div>
     `;
+    setTimeout(function(){
+     document.querySelector(".message-2").innerHTML = ""
+}, 1500);
   }
   else
   {
@@ -211,6 +222,9 @@ elemSkill2Btn.addEventListener("click", function(event) {
     <strong>Added ${ newSkill }.</strong> 
     </div>
     `;
+    setTimeout(function(){
+     document.querySelector(".message-2").innerHTML = ""
+}, 2000);
   }
 });
 
@@ -241,9 +255,12 @@ elemEduBtn.addEventListener("click", function(event) {
   {
     document.querySelector('.message-4').innerHTML = `
     <div class="alert alert-danger" role="alert" style="margin-top: 30px;">
-    <strong>You have not entered the required data.</strong> 
+    <strong>Please enter complete information.</strong> 
     </div>
     `;
+    setTimeout(function(){
+     document.querySelector(".message-4").innerHTML = ""
+}, 2000);
   }
   else
   {
@@ -265,6 +282,9 @@ elemEduBtn.addEventListener("click", function(event) {
     <strong>Added ${ newCourse }.</strong> 
     </div>
     `;
+    setTimeout(function(){
+     document.querySelector(".message-4").innerHTML = ""
+}, 2000);
   }
 });
 
@@ -296,9 +316,12 @@ elemWorkBtn.addEventListener("click", function(event) {
   {
     document.querySelector('.message-3').innerHTML = `
     <div class="alert alert-danger" role="alert" style="margin-top: 30px;">
-    <strong>You have not entered the required data.</strong> 
+    <strong>Please enter complete information.</strong> 
     </div>
     `;
+    setTimeout(function(){
+     document.querySelector(".message-3").innerHTML = ""
+}, 2000);
   }
   else
   {
@@ -319,6 +342,9 @@ elemWorkBtn.addEventListener("click", function(event) {
     <strong>Added ${ newCompany }.</strong> 
     </div>
     `;
+    setTimeout(function(){
+     document.querySelector(".message-3").innerHTML = ""
+}, 2000);
   }
 });
 
