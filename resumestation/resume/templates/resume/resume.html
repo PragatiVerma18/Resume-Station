@@ -38,6 +38,7 @@ body {
     width:100%!important;
     padding:0!important;
     margin:0!important;
+    font-size: small !important;
   }
 
   div.nav{
@@ -195,11 +196,11 @@ a:after {
                         <div class="timeline-entry-inner">
                            <div class="timeline-icon"></div>
                            <div class="timeline-label">
-                              {{item.0}}
+                              {{item.0}} to {{item.1}}
                            </div>
-                           <h3 class="company">{{item.1}}</h3>
-                           <p class="designation">{{item.2}}</p>
-                           <p class="description">{{item.3}}</p>
+                           <h3 class="company">{{item.2}}</h3>
+                           <p class="designation">{{item.3}}</p>
+                           <p class="description">{{item.4}}</p>
                         </div>
                      </article>
                      {% endfor %}
@@ -214,7 +215,7 @@ a:after {
                         <div class="timeline-entry-inner">
                            <div class="timeline-icon"></div>
                            <div class="timeline-label">
-                              {{item.0}} - {{item.1}}
+                              {{item.0}} to {{item.1}}
                            </div>
                            <h3 class="company">{{item.2}}</h3>
                            <p class="designation">{{item.3}}</p>
