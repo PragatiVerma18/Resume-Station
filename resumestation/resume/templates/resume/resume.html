@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="zxx">
    <head>
@@ -9,7 +10,8 @@
       <meta name="author" content="PragatiVerma18">
       <title>Resume Station</title>
       <!-- FAVICON  -->
-      <link rel="icon" href="https://image.flaticon.com/icons/svg/236/236817.svg" type="image/x-icon">
+      <!-- <link rel="icon" href="https://image.flaticon.com/icons/svg/236/236817.svg"> -->
+      <link rel="shortcut icon" href="{% static 'logo.png' %}" type="image/x-icon">
       <!-- Custom Fonts -->
       <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900" rel="stylesheet">
       <!-- Bootstrap Core CSS -->
@@ -27,6 +29,42 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
+      <style>
+@media print {
+  footer, aside, form, … {
+    display: none;
+  }
+body {
+    width:100%!important;
+    padding:0!important;
+    margin:0!important;
+    font-size: small !important;
+  }
+
+  div.nav{
+     display: none !important;
+  }
+
+@page:first {
+    margin: 0cm;
+}
+@page:last {
+    margin: 5cm;
+}
+@page:left {
+    margin: 2cm 1.5cm 2cm 2cm;
+}
+@page:right {
+    margin: 2cm 2cm 2cm 1.5cm;
+}
+a:after {
+    content: "("attr(href)")";
+  }
+@page {
+  margin: 2cm;
+}
+}
+      </style>
    </head>
    <body>
       <!-- =========================================
@@ -86,15 +124,15 @@
                ========================================== -->
             <header style="background: none !important; height: 350px !important;">
                <div class="col-md-12 extra-offset-md">
-               <a class="btn btn-transparent" style="margin-bottom: -100px !important;" href="{% url 'pdf' %}">
+               <button class="btn btn-transparent" style="cursor: pointer;" onclick="print();">
                      <img src="https://image.flaticon.com/icons/svg/60/60721.svg" alt="" height="30" width="30">
                      Download resume
-               </a> 
+               </button> 
                   <div class="resume-title">
-                     <h2>{{ username }}</h2>
+                     <h2>{{username}}</h2>
                      <div class="resume-designation extra-offset-md">
                         <span class="border"></span>
-                        <span>{{ title }}</span>
+                        <span>{{title}}</span>
                      </div>
                   </div>
                </div>
@@ -107,7 +145,7 @@
                <div class="col-md-offset-1 col-md-10">
                   <h2 class="title">About Me</h2>
                   <hr>
-                  <p>{{ about }}</p>
+                  <p>{{about}}</p>
                </div>
             </section>
             <!-- =========================================
@@ -120,59 +158,29 @@
                   <div class="skill-wrapper">
                      <!--skill-->
                      <ul class="skill" id="skills">
+                        {% for item in skills1 %}
                         <li>
-                           <p>{{ personalskills }}</p>
-                           <div class="skill-bar wow slideInLeft" data-width="{{ personalskillspercentage }}">
+                           <p>{{item.0}}</p>
+                           <div class="skill-bar wow slideInLeft" data-width="{{item.1}}">
                               <span class="skill-tip"></span>
                            </div>
                         </li>
-                        <li>
-                           <p>Team work</p>
-                           <div class="skill-bar wow slideInLeft" data-width="80">
-                              <span class="skill-tip"></span>
-                           </div>
-                        </li>
-                        <li>
-                           <p>Leadership</p>
-                           <div class="skill-bar wow slideInLeft" data-width="95">
-                              <span class="skill-tip"></span>
-                           </div>
-                        </li>
-                        <li>
-                           <p>Management</p>
-                           <div class="skill-bar wow slideInLeft" data-width="85">
-                              <span class="skill-tip"></span>
-                           </div>
-                        </li>
+                        {% endfor %}
+
                      </ul>
-                  </div>
+                  </div> 
                </div>
                <div class="col-md-5 offset-rt">
                   <h2 class="title">Professional Skills</h2>
                   <hr>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis volutpat nec.</p>
                   <ul class="skill-dots" id="skill-dots">
+                  {% for item in skills2 %}
                      <li class="skill">
-                        <span class="skill-title">{{professionalskills}}</span>
-                        <div class="skill-progress" data-score="{{professionalskillspercentage}}"></div>
+                        <span class="skill-title">{{ item.0 }}</span>
+                        <div class="skill-progress" data-score="{{item.1}}"></div>
+                     {% endfor %}
                      </li>
-                     <li class="skill">
-                        <span class="skill-title">Axure</span>
-                        <div class="skill-progress" data-score="8"></div>
-                     </li>
-                     <li class="skill">
-                        <span class="skill-title">Illustrator</span>
-                        <div class="skill-progress" data-score="9"></div>
-                     </li>
-                     <li class="skill">
-                        <span class="skill-title">Photoshop</span>
-                        <div class="skill-progress" data-score="7"></div>
-                     </li>
-                     <li class="skill">
-                        <span class="skill-title">Digital Marketing</span>
-                        <div class="skill-progress" data-score="4"></div>
-                     </li>
-                  </ul>
+                  </ul> 
                </div>
             </section>
             <!-- =========================================
@@ -183,234 +191,42 @@
                   <h2 class="title">WORK EXPERIENCE</h2>
                   <hr>
                   <div class="timeline-centered">
+                     {% for item in work %}
                      <article class="timeline-entry">
                         <div class="timeline-entry-inner">
                            <div class="timeline-icon"></div>
                            <div class="timeline-label">
-                              {{workstarted}} - {{workenddate}}
+                              {{item.0}} to {{item.1}}
                            </div>
-                           <h3 class="company">{{company}}</h3>
-                           <p class="designation">{{designation}}</p>
-                           <p class="description">{{description}}</p>
+                           <h3 class="company">{{item.2}}</h3>
+                           <p class="designation">{{item.3}}</p>
+                           <p class="description">{{item.4}}</p>
                         </div>
                      </article>
-                     <article class="timeline-entry">
-                        <div class="timeline-entry-inner">
-                           <div class="timeline-icon"></div>
-                           <div class="timeline-label">
-                              MARCH'11 - DECEMBER'12
-                           </div>
-                           <h3 class="company">Codedash Studio</h3>
-                           <p class="designation">UX DESIGNER </p>
-                           <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit maxime laborum sequi, magni earum quo soluta sint velit numquam, ipsum illum! Nostrum possimus illo architecto praesentium ut aliquam dolorem.</p>
-                        </div>
-                     </article>
-                     <article class="timeline-entry">
-                        <div class="timeline-entry-inner">
-                           <div class="timeline-icon"></div>
-                           <div class="timeline-label">
-                              JULY'09 - APRIL'11
-                           </div>
-                           <h3 class="company">Foursqure Studio</h3>
-                           <p class="designation">VISUAL / UI DESIGNER </p>
-                           <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit maxime laborum sequi, magni earum quo soluta sint velit numquam, ipsum illum! Nostrum possimus illo architecto praesentium ut aliquam dolorem.</p>
-                        </div>
-                     </article>
+                     {% endfor %}
                   </div>
                </div>
                <div class="col-md-5  offset-rt">
                   <h2 class="title">EDUCATION & DIPLOMAS</h2>
                   <hr>
                   <div class="timeline-centered">
+                     {% for item in education %}
                      <article class="timeline-entry">
                         <div class="timeline-entry-inner">
                            <div class="timeline-icon"></div>
                            <div class="timeline-label">
-                              {{started}} - {{enddate}}
+                              {{item.0}} to {{item.1}}
                            </div>
-                           <h3 class="company">{{course}}</h3>
-                           <p class="designation">{{institution}}</p>
-                           <p class="description">{{educationdescription}}</p>
+                           <h3 class="company">{{item.2}}</h3>
+                           <p class="designation">{{item.3}}</p>
+                           <p class="description">{{item.4}}</p>
                         </div>
                      </article>
-                     <article class="timeline-entry">
-                        <div class="timeline-entry-inner">
-                           <div class="timeline-icon"></div>
-                           <div class="timeline-label">
-                              JUNE, 2004
-                           </div>
-                           <h3 class="company">Bachelor Of Arts</h3>
-                           <p class="designation">UNIVERSITY OF DESIGN </p>
-                           <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit maxime laborum sequi, magni earum quo soluta sint velit numquam, ipsum illum! Nostrum possimus illo architecto praesentium ut aliquam dolorem.</p>
-                        </div>
-                     </article>
-                     <article class="timeline-entry">
-                        <div class="timeline-entry-inner">
-                           <div class="timeline-icon"></div>
-                           <div class="timeline-label">
-                              JANUARY, 2001
-                           </div>
-                           <h3 class="company">Master Degree Of Design</h3>
-                           <p class="designation">UNIVERSITY OF DESIGN </p>
-                           <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit maxime laborum sequi, magni earum quo soluta sint velit numquam, ipsum illum! Nostrum possimus illo architecto praesentium ut aliquam dolorem.</p>
-                        </div>
-                     </article>
+                     {% endfor %}
                   </div>
                </div>
             </section>
-            <!-- =========================================
-               PORTFOLIO
-               ========================================== -->
-           <!-- <section id="portfolio">
-               <div class="col-md-offset-1 col-md-10">
-                  <h2 class="title">PORTFOLIO</h2>
-                  <hr>
-                  <div class="clearfix"></div>
-                  <div class="porfolio-wrapper">
-                     <div class="portfolioFilter">
-                        <ul>
-                           <li>
-                              <a href="#" data-filter="*"  class="current">All</a>
-                           </li>
-                           <li>
-                              <a href="#" data-filter=".branding">Branding</a>
-                           </li>
-                           <li>
-                              <a href="#" data-filter=".illustration">Illustration</a>
-                           </li>
-                           <li>
-                              <a href="#" data-filter=".wordpress">Wordpress</a>
-                           </li>
-                           <li>
-                              <a href="#" data-filter=".site-template">Site Template</a>
-                           </li>
-                        </ul>
-                     </div>
-                     <ul class="portfolioContainer gallery">
-                        <li class="wordpress item">
-                           <div class="lightCon">
-                              <div class="hoverBox">
-                                 <ul class="hover-box-inner">
-                                    <li>
-                                       <a data-gal="prettyPhoto[gallery1]" title="Project Name 1" href=""><i class="fa fa-image" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                       <h4>Project Name</h4>
-                                    </li>
-                                 </ul>
-                              </div>
-                              <img src="" alt="">
-                           </div>
-                        </li>
-                        <li class="branding illustration item">
-                           <div class="lightCon">
-                              <div class="hoverBox">
-                                 <ul class="hover-box-inner">
-                                    <li>
-                                       <a data-gal="prettyPhoto[gallery1]" title="Project Name 2" href=""><i class="fa fa-image"></i></a>
-                                    </li>
-                                    <li>
-                                       <h4>Project Name</h4>
-                                    </li>
-                                 </ul>
-                              </div>
-                              <img src="" alt="">
-                           </div>
-                        </li>
-                        <li class="illustration item">
-                           <div class="lightCon">
-                              <div class="hoverBox">
-                                 <ul class="hover-box-inner">
-                                    <li>
-                                       <a data-gal="prettyPhoto[gallery1]" title="Project Name 3" href=""><i class="fa fa-image"></i></a>
-                                    </li>
-                                    <li>
-                                       <h4>Project Name</h4>
-                                    </li>
-                                 </ul>
-                              </div>
-                              <img src="" alt="">
-                           </div>
-                        </li>
-                        <li class="branding illustration item">
-                           <div class="lightCon">
-                              <div class="hoverBox">
-                                 <ul class="hover-box-inner">
-                                    <li>
-                                       <a data-gal="prettyPhoto[gallery1]" title="Project Name 4" href=""><i class="fa fa-image"></i></a>
-                                    </li>
-                                    <li>
-                                       <h4>Project Name</h4>
-                                    </li>
-                                 </ul>
-                              </div>
-                              <img src="" alt="">
-                           </div>
-                        </li>
-                        <li class="illustration photos item">
-                           <div class="lightCon">
-                              <div class="hoverBox">
-                                 <ul class="hover-box-inner">
-                                    <li>
-                                       <a data-gal="prettyPhoto[gallery1]" title="Project Name 5" href=""><i class="fa fa-image"></i></a>
-                                    </li>
-                                    <li>
-                                       <h4>Project Name</h4>
-                                    </li>
-                                 </ul>
-                              </div>
-                              <img src="" alt="">
-                           </div>
-                        </li>
-                        <li class="branding photos item">
-                           <div class="lightCon">
-                              <div class="hoverBox">
-                                 <ul class="hover-box-inner">
-                                    <li>
-                                       <a data-gal="prettyPhoto[gallery1]" title="Project Name 6" href=""><i class="fa fa-image"></i></a>
-                                    </li>
-                                    <li>
-                                       <h4>Project Name</h4>
-                                    </li>
-                                 </ul>
-                              </div>
-                              <img src="" alt="">
-                           </div>
-                        </li>
-                        <li class="illustration photos item">
-                           <div class="lightCon">
-                              <div class="hoverBox">
-                                 <ul class="hover-box-inner">
-                                    <li>
-                                       <a data-gal="prettyPhoto[gallery1]" title="Project Name 7" href=""><i class="fa fa-image"></i></a>
-                                    </li>
-                                    <li>
-                                       <h4>Project Name</h4>
-                                    </li>
-                                 </ul>
-                              </div>
-                              <img src="" alt="">
-                           </div>
-                        </li>
-                        <li class="site-template item">
-                           <div class="lightCon">
-                              <div class="hoverBox">
-                                 <ul class="hover-box-inner">
-                                    <li>
-                                       <a data-gal="prettyPhoto[gallery1]" title="Project Name 8" href=""><i class="fa fa-image"></i></a>
-                                    </li>
-                                    <li>
-                                       <h4>Project Name</h4>
-                                    </li>
-                                 </ul>
-                              </div>
-                              <img src="" alt="">
-                           </div>
-                        </li>
-                     </ul>
-                  </div>
-               </div>
-            </section> -->
+
 
 
          </div>
@@ -455,59 +271,6 @@
       <!-- Google Maps -->
       <script src="http://themeelite.com/demos/flatr/lib/googlemaps/infobubble.js"></script>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDMQqDC0jmMiZmHAbC_q57Zq3e2obnLMw"></script>
-<!--      <script>
-         // When the window has finished loading create our google map below
-         google.maps.event.addDomListener(window, 'load', init);
-         
-         function init() {
-             // Basic options for a simple Google Map
-             // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-             var mapOptions = {
-                 // How zoomed in you want the map to start at (always required)
-                 zoom: 11,
-                 // The latitude and longitude to center the map (always required)
-                 center: new google.maps.LatLng(28.5967439, 77.3285038), // New York
-                 // This is where you would paste any style found on Snazzy Maps.
-                 styles: [{ "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#e9e9e9" }, { "lightness": 17 }] }, { "featureType": "landscape", "elementType": "geometry", "stylers": [{ "color": "#f5f5f5" }, { "lightness": 20 }] }, { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{ "color": "#ffffff" }, { "lightness": 17 }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "color": "#ffffff" }, { "lightness": 29 }, { "weight": 0.2 }] }, { "featureType": "road.arterial", "elementType": "geometry", "stylers": [{ "color": "#ffffff" }, { "lightness": 18 }] }, { "featureType": "road.local", "elementType": "geometry", "stylers": [{ "color": "#ffffff" }, { "lightness": 16 }] }, { "featureType": "poi", "elementType": "geometry", "stylers": [{ "color": "#f5f5f5" }, { "lightness": 21 }] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#dedede" }, { "lightness": 21 }] }, { "elementType": "labels.text.stroke", "stylers": [{ "visibility": "on" }, { "color": "#ffffff" }, { "lightness": 16 }] }, { "elementType": "labels.text.fill", "stylers": [{ "saturation": 36 }, { "color": "#333333" }, { "lightness": 40 }] }, { "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] }, { "featureType": "transit", "elementType": "geometry", "stylers": [{ "color": "#f2f2f2" }, { "lightness": 19 }] }, { "featureType": "administrative", "elementType": "geometry.fill", "stylers": [{ "color": "#fefefe" }, { "lightness": 20 }] }, { "featureType": "administrative", "elementType": "geometry.stroke", "stylers": [{ "color": "#fefefe" }, { "lightness": 17 }, { "weight": 1.2 }] }]
-             };
-         
-             // Get the HTML DOM element that will contain your map 
-             // We are using a div with id="map" seen below in the <body>
-             var mapElement = document.getElementById('map');
-         
-             // Create the Google Map using our element and options defined above
-             var map = new google.maps.Map(mapElement, mapOptions);
-             var infowindow = new InfoBubble({
-                 shadowStyle: 0,
-                 padding: 30,
-                 backgroundColor: '#fff',
-                 borderRadius: 7,
-                 arrowSize: 10,
-                 borderWidth: 0,
-                 maxWidth: 245,
-                 borderColor: '#2c2c2c',
-                 disableAutoPan: true,
-                 hideCloseButton: true,
-                 arrowPosition: 30,
-                 backgroundClassName: 'transparent',
-                 arrowStyle: 0
-             });
-             var marker = new google.maps.Marker({
-                 position: new google.maps.LatLng(40.6700, -73.9400),
-                 icon: new google.maps.MarkerImage('img/svg/marker.svg',
-                     null, null, null, new google.maps.Size(50, 50)),
-                 map: map,
-                 title: 'yo'
-             });
-             google.maps.event.addListener(marker, 'click', (function(marker) {
-                 return function() {
-                     infowindow.setContent('\u003cp\u003eCollins Street West Victoria 8007 Australia.\u003c/p\u003e\u003cp\u003eCall : +1800 1234 56789\u003c/p\u003e');
-                     infowindow.open(map, marker);
-                 }
-             })(marker));
-         }
-      </script>-->
-      <script src="http://themeelite.com/demos/flatr/lib/switcher/js/color-switcher.js"></script>
       <script src="http://themeelite.com/demos/flatr/lib/switcher/js/jscolor.min.js"></script>
       <script src="http://themeelite.com/demos/flatr/js/scripts.min.js"></script>
    </body>
