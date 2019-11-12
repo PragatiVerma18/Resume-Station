@@ -1,6 +1,5 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.utils import timezone
 import json
 
 # Create your views here.
@@ -11,6 +10,7 @@ def home(request):
 def create(request):
   if request.method == 'POST':
     username = request.POST['username']
+    print(username)
     title = request.POST['title']
     about = request.POST['about']
     personal_skills = request.POST['personal-skills']
@@ -36,13 +36,3 @@ def create(request):
 
 def resume(request):
   return render(request, 'resume/resume.html')
-
-from django.http import HttpResponse
-from django.views.generic import View
-
-from .utils import render_to_pdf #created in step 4
-
-class GeneratePdf(View):
-    def get(self, request, *args, **kwargs):
-        pdf = render_to_pdf('pdf/resume.html')
-        return HttpResponse(pdf, content_type='application/pdf')

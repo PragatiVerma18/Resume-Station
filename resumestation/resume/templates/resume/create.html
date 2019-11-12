@@ -9,6 +9,7 @@
   </div>
   {% endif %}
 
+
 <section class="testimonial py-5" id="testimonial">
     <div class="container">
         <div class="row ">
@@ -43,6 +44,8 @@
                               <input type="about" class="form-control" placeholder="About" name="about" style="margin-bottom: 20px;">
                             </div>
                           </div>
+                          <span class="message0"></span>
+                          <button class="js-details-btn"><i class="fa fa-plus"></i>Add Details</button>
                           <hr>
                         <!--  <span href="#" id="add-skill1"><i class="fa fa-plus"></i> Add a new skill</span>-->
                           <div id="personal-skills">
@@ -113,15 +116,16 @@
                 <br /> -->
             
                 <!-- Submit this form to Django -->
-                <form class="js-resume-form" action="{% url 'create' %}" method="POST">
+                <form class="js-resume-form" id="form" action="{% url 'create' %}" method="POST">
                     {% csrf_token %}
-                  <input type="hidden" name="hidden-input-username" />
-                  <input type="hidden" name="hidden-input-title" />
-                  <input type="hidden" name="hidden-input-about" /> 
+                  <input type="hidden" name="hidden-input-details" />
+                  <!-- <input type="hidden" name="hidden-input-title" />
+                  <input type="hidden" name="hidden-input-about" />  -->
                   <input type="hidden" name="hidden-input-skills1" />
                   <input type="hidden" name="hidden-input-skills2" />
                   <input type="hidden" name="hidden-input-work" />
                   <input type="hidden" name="hidden-input-education" />
+                  <span class="message"></span>
                   <button type="submit" class="js-submit-btn">SUBMIT FORM</button>
                 </form>
 
@@ -133,9 +137,56 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
 <script>
 
-document.querySelector('input[name="hidden-input-username"]').value = document.querySelector('input[name="username"]').value;
-document.querySelector('input[name="hidden-input-title"]').value = document.querySelector('input[name="title"]').value;
-document.querySelector('input[name="hidden-input-about"]').value = document.querySelector('input[name="about"]').value;
+const details ={
+  username: [],
+  title: [],
+  about: []
+};
+
+const HiddenDetails = document.querySelector('input[name="hidden-input-details"]');
+const Username= document.querySelector('input[name="username"]');
+const Title = document.querySelector('input[name="title"]');
+const about = document.querySelector('input[name="about"]');
+
+const elemDetailBtn = document.querySelector(".js-details-btn");
+
+elemDetailBtn.addEventListener('click', function(event){
+ event.preventDefault();
+ const newUsername = Username.value;
+ const newTitle = Title.value;
+ const newAbout = about.value;
+
+ if(newUsername== "" || newTitle== "" || newAbout == "")
+ {
+  document.querySelector('.message0').innerHTML = `
+    <div class="alert alert-danger" role="alert" style="margin-top: 30px;">
+    <strong>Please enter complete information.</strong> 
+    </div>
+    `;
+    setTimeout(function(){
+     document.querySelector(".message0").innerHTML = ""
+}, 2000);
+
+  } else {
+  details.username.push(newUsername);
+  details.title.push(newTitle);
+  details.about.push(newAbout);
+  HiddenDetails.value = JSON.stringify(details);
+  Username.value = "";
+  Title.value = "";
+  about.value = "";
+
+  document.querySelector('.message0').innerHTML = `
+    <div class="alert alert-success" role="alert" style="margin-top: 30px;">
+    <strong>Added Details.</strong> 
+    </div>
+    `;
+    setTimeout(function(){
+     document.querySelector(".message0").innerHTML = ""
+}, 2000);
+ }
+});
+
 
 const data = {
   skills1: [], 
@@ -149,7 +200,7 @@ const elemSkillBtn = document.querySelector(".js-skill-btn");
 
 const elemHiddenInput = document.querySelector('input[name="hidden-input-skills1"]');
 const elemHiddenInputSkillLevel = document.querySelector('input[name="hidden-input-skills1-level"]');
-const elemSubmitBtn = document.querySelector(".js-submit-btn");
+
 
 elemSkillBtn.addEventListener("click", function(event) {
   event.preventDefault();
@@ -336,7 +387,8 @@ elemWorkBtn.addEventListener("click", function(event) {
   elemWorkInput2.value = "";
   elemWorkInput3.value = "";
   elemWorkInput4.value = "";
-  elemWorkInput5.value = "";
+  elemWorkInput5.value = ""; 
+
   document.querySelector('.message-3').innerHTML = `
     <div class="alert alert-success" role="alert" style="margin-top: 30px;">
     <strong>Added ${ newCompany }.</strong> 
@@ -347,6 +399,39 @@ elemWorkBtn.addEventListener("click", function(event) {
 }, 2000);
   }
 });
+
+
+
+// elemSubmitBtn.addEventListener('click', function(event){
+//   event.preventDefault();
+//   const input1 = document.querySelector('input[name="hidden-input-details"]').value;
+//   // const input2 = document.querySelector('input[name="hidden-input-title"]').value;
+//   // const input3 = document.querySelector('input[name="hidden-input-about"]').value;
+//   const input4 = document.querySelector('input[name="hidden-input-skills1"]').value;
+//   const input5 = document.querySelector('input[name="hidden-input-skills2"]').value;
+//   const input6 = document.querySelector('input[name="hidden-input-work"]').value;
+//   const input7 = document.querySelector('input[name="hidden-input-education"]').value;
+//   if(input1 == "" || input4 == "" || input5 == "" || input6 == "" || input7 == "")
+//   {
+//     document.querySelector('.message').innerHTML = `
+//     <div class="alert alert-danger" role="alert" style="margin-top: 30px;">
+//     <strong>Please enter complete information.</strong> 
+//     </div>
+//     `;
+//     setTimeout(function(){
+//      document.querySelector(".message").innerHTML = ""
+// }, 3000);
+//   }
+//   //  else
+//   //  {
+//   // let formData = new FormData(document.querySelector('#form'));
+//   // //console.log(JSON.stringify(Object.fromEntries(formData)));
+//   // let data = JSON.stringify(Object.fromEntries(formData));
+//   // console.log(data);
+//   //  }
+// });
+
+
 
 </script>
 
