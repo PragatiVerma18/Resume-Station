@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-md-4">
+     <h1 style="font-weight: bolder;" class="mt-5 mb-3">
+        A Resume Builder that Makes Life Easier
+     </h1>
+      <h4 style="font-weight: 400;" class="mb-5">
+        Building a job-landing resume doesn’t have to be hard.
+      </h4>
+      <div class="checkbox checkbox-danger">
+          <input id="checkbox6" type="checkbox" class="styled" checked>
+          <label for="checkbox6">
+            <h5>Print and Download for Free</h5>
+          </label>
+      </div>
+
+      <div class="checkbox checkbox-danger">
+          <input id="checkbox6" type="checkbox" class="styled" checked>
+          <label for="checkbox6">
+            <h5>Create a resume for free</h5>
+          </label>
+      </div>
+      
+      <div class="checkbox checkbox-danger">
+          <input id="checkbox6" type="checkbox" class="styled" checked>
+          <label for="checkbox6">
+            <h5>Send it to the employers</h5>
+          </label>
+      </div>
+
+      <div class="checkbox checkbox-danger">
+          <input id="checkbox6" type="checkbox" class="styled" checked>
+          <label for="checkbox6">
+          <h5>Land your dream job</h5>
+          </label>
+      </div>
+
+      <a class="btn-danger btn btn-lg text-white mt-5" href="{% url 'create' %}"> Create your Resume Now</a>
+    </div>
+
+    <div class="col-md-6 mt-5">
+      <img src="https://www.greatsampleresume.com/wp-content/themes/resumebaking/img/ats.svg" >
+    </div>
+  </div>
+
+
+{% endblock %}

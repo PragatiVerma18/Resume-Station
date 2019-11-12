@@ -1,0 +1,307 @@
+<!DOCTYPE  HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="zxx">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="Build your resume">
+      <meta name="keywords" content="one page, responsive, html template, responsive resume">
+      <meta name="author" content="PragatiVerma18">
+      <title>Resume Station</title>
+      <!-- FAVICON  -->
+      <link rel="icon" href="https://image.flaticon.com/icons/svg/236/236817.svg" type="image/x-icon">
+      <!-- Custom Fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900" rel="stylesheet">
+      <!-- Bootstrap Core CSS -->
+      <link href="http://themeelite.com/demos/flatr/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <link href="http://themeelite.com/demos/flatr/lib/bootstrap/css/normalize.css" rel="stylesheet">
+      <!-- Plugin CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="http://themeelite.com/demos/flatr/lib/wowjs/animate.min.css">
+      <link rel="stylesheet" href="http://themeelite.com/demos/flatr/lib/pretty-photo/prettyPhoto.css">
+      <!-- Template CSS  -->
+      <link rel="stylesheet" id="colors" href="http://themeelite.com/demos/flatr/css/layout1-color8.css" type="text/css">
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+   </head>
+   <body>
+      <!-- =========================================
+         Navigation
+         ========================================== -->
+      <!--start mobile navigation-->
+      <div class="nav visible-xs fixed-top" style="color: black !important;">
+         <div class="container">
+            <div class="row">
+               <div class="col-sm-12">
+                  <button class="btn btn-sm navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu
+                  <i class="fa fa-bars ico-sm"></i></button>
+               </div>
+               <div class="collapse navbar-collapse" id="navbarResponsive">
+                  <ul class="navbar-nav text-uppercase">
+                     <li class="page-scroll nav-item">
+                        <a class="nav-link scroll-to" data-toggle="collapse" data-target="#navbarResponsive" href="#introduction" style="color: black !important; font-weight: 700;">introduction</a>
+                     </li>
+                     <li class="page-scroll nav-item">
+                        <a class="nav-link scroll-to" data-toggle="collapse" data-target="#navbarResponsive" href="#skillset" style="color: black !important; font-weight: 700;">skillset</a>
+                     </li>
+                     <li class="page-scroll nav-item">
+                        <a class="nav-link scroll-to" data-toggle="collapse" data-target="#navbarResponsive" href="#experience" style="color: black !important; font-weight: 700;">experience</a>
+                     </li>
+                     <li class="page-scroll nav-item">
+                        <a class="nav-link scroll-to" data-toggle="collapse" data-target="#navbarResponsive" href="#portfolio" style="color: black !important; font-weight: 700;">portfolio</a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--end mobile navigation-->
+      <nav class="nav-container hidden-xs">
+         <ul class="nav">
+            <li class="page-scroll">
+               <a href="#introduction">introduction</a>
+            </li>
+            <li class="page-scroll">
+               <a href="#skillset">skills</a>
+            </li>
+            <li class="page-scroll">
+               <a href="#experience">experience</a>
+            </li>
+            <li class="page-scroll">
+               <a href="#portfolio">portfolio</a>
+            </li>
+         </ul>
+      </nav>
+      <!-- =========================================
+         Main Container
+         ========================================== -->
+      <div class="container main-container">
+         <div class="row">
+            <!-- =========================================
+               HEADER
+               ========================================== -->
+            <header style="background: none !important; height: 350px !important;">
+               <div class="col-md-12 extra-offset-md">
+               <button class="btn btn-transparent" style="margin-bottom: -100px !important;">
+                     <img src="https://image.flaticon.com/icons/svg/60/60721.svg" alt="" height="30" width="30">
+                     Download resume
+                  </button> 
+                  <div class="resume-title">
+                     <h2>{{ username }}</h2>
+                     <div class="resume-designation extra-offset-md">
+                        <span class="border"></span>
+                        <span>{{ title }}</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="header-overlay"></div>
+            </header>
+            <!-- =========================================
+               ABOUT ME
+               ========================================== -->
+            <section id="introduction">
+               <div class="col-md-offset-1 col-md-10">
+                  <h2 class="title">About Me</h2>
+                  <hr>
+                  <p>{{ about }}</p>
+               </div>
+            </section>
+            <!-- =========================================
+               SKILL
+               ========================================== -->
+            <section id="skillset">
+               <div class="col-md-offset-1 col-md-5 offset-lt">
+                  <h2 class="title">Personal Skills</h2>
+                  <hr>
+                  <div class="skill-wrapper">
+                     <!--skill-->
+                     <ul class="skill" id="skills">
+                        <li>
+                           <p>{{ personalskills }}</p>
+                           <div class="skill-bar wow slideInLeft" data-width="{{ personalskillspercentage }}">
+                              <span class="skill-tip"></span>
+                           </div>
+                        </li>
+                        <li>
+                           <p>Team work</p>
+                           <div class="skill-bar wow slideInLeft" data-width="80">
+                              <span class="skill-tip"></span>
+                           </div>
+                        </li>
+                        <li>
+                           <p>Leadership</p>
+                           <div class="skill-bar wow slideInLeft" data-width="95">
+                              <span class="skill-tip"></span>
+                           </div>
+                        </li>
+                        <li>
+                           <p>Management</p>
+                           <div class="skill-bar wow slideInLeft" data-width="85">
+                              <span class="skill-tip"></span>
+                           </div>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="col-md-5 offset-rt">
+                  <h2 class="title">Professional Skills</h2>
+                  <hr>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis volutpat nec.</p>
+                  <ul class="skill-dots" id="skill-dots">
+                     <li class="skill">
+                        <span class="skill-title">{{professionalskills}}</span>
+                        <div class="skill-progress" data-score="{{professionalskillspercentage}}"></div>
+                     </li>
+                     <li class="skill">
+                        <span class="skill-title">Axure</span>
+                        <div class="skill-progress" data-score="8"></div>
+                     </li>
+                     <li class="skill">
+                        <span class="skill-title">Illustrator</span>
+                        <div class="skill-progress" data-score="9"></div>
+                     </li>
+                     <li class="skill">
+                        <span class="skill-title">Photoshop</span>
+                        <div class="skill-progress" data-score="7"></div>
+                     </li>
+                     <li class="skill">
+                        <span class="skill-title">Digital Marketing</span>
+                        <div class="skill-progress" data-score="4"></div>
+                     </li>
+                  </ul>
+               </div>
+            </section>
+            <!-- =========================================
+               WORK
+               ========================================== -->
+            <section id="experience" style="margin-bottom: 70px;">
+               <div class="col-md-offset-1 col-md-5  offset-lt">
+                  <h2 class="title">WORK EXPERIENCE</h2>
+                  <hr>
+                  <div class="timeline-centered">
+                     <article class="timeline-entry">
+                        <div class="timeline-entry-inner">
+                           <div class="timeline-icon"></div>
+                           <div class="timeline-label">
+                              {{workstarted}} - {{workenddate}}
+                           </div>
+                           <h3 class="company">{{company}}</h3>
+                           <p class="designation">{{designation}}</p>
+                           <p class="description">{{description}}</p>
+                        </div>
+                     </article>
+                     <article class="timeline-entry">
+                        <div class="timeline-entry-inner">
+                           <div class="timeline-icon"></div>
+                           <div class="timeline-label">
+                              MARCH'11 - DECEMBER'12
+                           </div>
+                           <h3 class="company">Codedash Studio</h3>
+                           <p class="designation">UX DESIGNER </p>
+                           <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit maxime laborum sequi, magni earum quo soluta sint velit numquam, ipsum illum! Nostrum possimus illo architecto praesentium ut aliquam dolorem.</p>
+                        </div>
+                     </article>
+                     <article class="timeline-entry">
+                        <div class="timeline-entry-inner">
+                           <div class="timeline-icon"></div>
+                           <div class="timeline-label">
+                              JULY'09 - APRIL'11
+                           </div>
+                           <h3 class="company">Foursqure Studio</h3>
+                           <p class="designation">VISUAL / UI DESIGNER </p>
+                           <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit maxime laborum sequi, magni earum quo soluta sint velit numquam, ipsum illum! Nostrum possimus illo architecto praesentium ut aliquam dolorem.</p>
+                        </div>
+                     </article>
+                  </div>
+               </div>
+               <div class="col-md-5  offset-rt">
+                  <h2 class="title">EDUCATION & DIPLOMAS</h2>
+                  <hr>
+                  <div class="timeline-centered">
+                     <article class="timeline-entry">
+                        <div class="timeline-entry-inner">
+                           <div class="timeline-icon"></div>
+                           <div class="timeline-label">
+                              {{started}} - {{enddate}}
+                           </div>
+                           <h3 class="company">{{course}}</h3>
+                           <p class="designation">{{institution}}</p>
+                           <p class="description">{{educationdescription}}</p>
+                        </div>
+                     </article>
+                     <article class="timeline-entry">
+                        <div class="timeline-entry-inner">
+                           <div class="timeline-icon"></div>
+                           <div class="timeline-label">
+                              JUNE, 2004
+                           </div>
+                           <h3 class="company">Bachelor Of Arts</h3>
+                           <p class="designation">UNIVERSITY OF DESIGN </p>
+                           <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit maxime laborum sequi, magni earum quo soluta sint velit numquam, ipsum illum! Nostrum possimus illo architecto praesentium ut aliquam dolorem.</p>
+                        </div>
+                     </article>
+                     <article class="timeline-entry">
+                        <div class="timeline-entry-inner">
+                           <div class="timeline-icon"></div>
+                           <div class="timeline-label">
+                              JANUARY, 2001
+                           </div>
+                           <h3 class="company">Master Degree Of Design</h3>
+                           <p class="designation">UNIVERSITY OF DESIGN </p>
+                           <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit maxime laborum sequi, magni earum quo soluta sint velit numquam, ipsum illum! Nostrum possimus illo architecto praesentium ut aliquam dolorem.</p>
+                        </div>
+                     </article>
+                  </div>
+               </div>
+            </section>
+         </div>
+         <!--end of Main container-->
+      </div>
+      <!-- =========================================
+         Footer
+         ========================================== -->
+      <footer>
+         © 2019 PragatiVerma18 All right reserved. 
+         <a href="#">Pragati Verma</a>
+      </footer>
+      <!-- =========================
+         PRELOADER
+         ============================== -->
+      <div class="loader-wrapper">
+         <div class="preload"></div>
+      </div>
+      <!-- =========================================
+         Scripts
+         ========================================== -->
+      <!-- jQuery -->
+      <script src="http://themeelite.com/demos/flatr/lib/jquery/jquery-3.2.1.min.js"></script>
+      <!-- Bootstrap Core JavaScript -->
+      <script src="http://themeelite.com/demos/flatr/lib/bootstrap/js/bootstrap.min.js"></script>
+      <!-- JQuery Easing -->
+      <script src="http://themeelite.com/demos/flatr/lib/jquery/jquery.easing.min.js"></script>
+      <!-- Retina LIbrary-->
+      <script src="http://themeelite.com/demos/flatr/lib/retina/retina.min.js"></script>
+      <!--Wow -->
+      <script src="http://themeelite.com/demos/flatr/lib/wowjs/wow.min.js"></script>
+      <!-- Isotope Plugin -->
+      <script src="http://themeelite.com/demos/flatr/lib/isotope/isotope.pkgd.js"></script>
+      <!-- Pretty-Photo Gallery -->
+      <script src="http://themeelite.com/demos/flatr/lib/pretty-photo/jquery.prettyPhoto.min.js"></script>
+      <!-- Jquery Youtube Video Player -->
+      <script src="http://themeelite.com/demos/flatr/lib/jquery/jquery.mb.YTPlayer.min.js"></script>  
+      <!-- Jquery Validator -->
+      <script src='http://themeelite.com/demos/flatr/lib/jquery/jquery.validate.min.js'></script>      
+      <!-- Owl Casousel Plugin -->
+      <script src="http://themeelite.com/demos/flatr/lib/owl-carousel/js/owl.carousel.min.js"></script>
+      <!-- Google Maps -->
+      <script src="http://themeelite.com/demos/flatr/lib/googlemaps/infobubble.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDMQqDC0jmMiZmHAbC_q57Zq3e2obnLMw"></script>
+      <script src="http://themeelite.com/demos/flatr/lib/switcher/js/color-switcher.js"></script>
+      <script src="http://themeelite.com/demos/flatr/lib/switcher/js/jscolor.min.js"></script>
+      <script src="http://themeelite.com/demos/flatr/js/scripts.min.js"></script>
+   </body>
+</html>

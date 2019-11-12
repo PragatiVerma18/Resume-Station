@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+{% if error %}
+<div class="alert alert-danger" role="alert" style="margin-top: 30px;">
+    <strong>{{error}}</strong> 
+  </div>
+  {% endif %}
+
+<section class="testimonial py-5" id="testimonial">
+  <div class="container">
+      <div class="row ">
+          <div class="col-md-4 py-5 bg-dark text-white text-center ">
+              <div class=" ">
+                  <div class="card-body">
+                      <img src="{% static 'stats.png' %}" style="width:30%">
+                      <h2 class="py-3">Registration</h2>
+                      <p>
+                        "I want to look back on my career and be proud of the work, and be proud that I tried everything." —Jon Stewart
+</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-8 py-5 border text-center">
+              <h4 class="pb-4">Please fill with your details</h4>
+              <form action="{% url 'signup' %}" method="POST" class="text-center">
+                    {% csrf_token %}
+                    <div class="form-row">
+                            <div class="form-group col-md-6 pb-3" style="margin: auto;">
+                              <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email">
+                            </div>
+                          </div>
+                  <div class="form-row">
+                      <div class="form-group col-md-6 pb-3" style="margin: auto;">
+                        <input id="Full Name" name="username" placeholder="Username Name" class="form-control" type="text">
+                      </div>
+                    </div>
+                  <div class="form-row">
+                        <div class="form-group col-md-6 pb-3" style="margin: auto;">
+                                <input type="password" class="form-control" id="inputEmail4" placeholder="Password" name="password">
+                              </div>
+                  </div>
+                  <div class="form-row">
+                        <div class="form-group col-md-6 pb-3" style="margin: auto;">
+                                <input type="password" class="form-control" id="inputEmail4" placeholder="Confirm Password" name="confirmpassword">
+                              </div>
+                  </div>
+                  <div class="form-row  pb-3">
+                      <button type="submit" class="btn btn-danger text-center" style="margin: auto;">Submit</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+{% endblock %}
