@@ -13,16 +13,16 @@
       <!-- <link rel="icon" href="https://image.flaticon.com/icons/svg/236/236817.svg"> -->
       <link rel="shortcut icon" href="{% static 'logo.png' %}" type="image/x-icon">
       <!-- Custom Fonts -->
-      <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900" rel="stylesheet">
+      <link href="{% static 'font.css' %}" rel="stylesheet">
       <!-- Bootstrap Core CSS -->
-      <link href="http://themeelite.com/demos/flatr/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-      <link href="http://themeelite.com/demos/flatr/lib/bootstrap/css/normalize.css" rel="stylesheet">
+      <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
+      <link href="{% static 'normalize.css' %}" rel="stylesheet">
       <!-- Plugin CSS -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link rel="stylesheet" href="http://themeelite.com/demos/flatr/lib/wowjs/animate.min.css">
-      <link rel="stylesheet" href="http://themeelite.com/demos/flatr/lib/pretty-photo/prettyPhoto.css">
+      <link rel="stylesheet" href="{% static 'font-awesome.min.css' %}">
+      <link rel="stylesheet" href="{% static 'animate.min.css' %}">
+      <link rel="stylesheet" href="{% static 'prettyPhoto.css' %}">
       <!-- Template CSS  -->
-      <link rel="stylesheet" id="colors" href="http://themeelite.com/demos/flatr/css/layout1-color8.css" type="text/css">
+      <link rel="stylesheet" id="colors" href="{% static 'layout1-color8.css' %}" type="text/css">
       <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
       <!--[if lt IE 9]>
@@ -249,29 +249,26 @@ a:after {
          Scripts
          ========================================== -->
       <!-- jQuery -->
-      <script src="http://themeelite.com/demos/flatr/lib/jquery/jquery-3.2.1.min.js"></script>
+      <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
       <!-- Bootstrap Core JavaScript -->
-      <script src="http://themeelite.com/demos/flatr/lib/bootstrap/js/bootstrap.min.js"></script>
+      <script src="{% static 'bootstrap.min.js' %}"></script>
       <!-- JQuery Easing -->
-      <script src="http://themeelite.com/demos/flatr/lib/jquery/jquery.easing.min.js"></script>
+      <script src="{% static 'jquery.easing.min.js' %}"></script>
       <!-- Retina LIbrary-->
-      <script src="http://themeelite.com/demos/flatr/lib/retina/retina.min.js"></script>
+      <script src="{% static 'retina.min.js' %}"></script>
       <!--Wow -->
-      <script src="http://themeelite.com/demos/flatr/lib/wowjs/wow.min.js"></script>
+      <script src="{% static 'wow.min.js' %}"></script>
       <!-- Isotope Plugin -->
-      <script src="http://themeelite.com/demos/flatr/lib/isotope/isotope.pkgd.js"></script>
+      <script src="{% static 'isotope.pkgd.js' %}"></script>
       <!-- Pretty-Photo Gallery -->
-      <script src="http://themeelite.com/demos/flatr/lib/pretty-photo/jquery.prettyPhoto.min.js"></script>
-      <!-- Jquery Youtube Video Player -->
-      <script src="http://themeelite.com/demos/flatr/lib/jquery/jquery.mb.YTPlayer.min.js"></script>  
+      <script src="{% static 'jquery.prettyPhoto.min.js' %}"></script> 
       <!-- Jquery Validator -->
-      <script src='http://themeelite.com/demos/flatr/lib/jquery/jquery.validate.min.js'></script>      
+      <script src="{% static 'jquery.validate.min.js' %}"></script>      
       <!-- Owl Casousel Plugin -->
-      <script src="http://themeelite.com/demos/flatr/lib/owl-carousel/js/owl.carousel.min.js"></script>
+      <script src="{% static 'owl.carousel.min.js' %}"></script>
       <!-- Google Maps -->
-      <script src="http://themeelite.com/demos/flatr/lib/googlemaps/infobubble.js"></script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDMQqDC0jmMiZmHAbC_q57Zq3e2obnLMw"></script>
-      <script src="http://themeelite.com/demos/flatr/lib/switcher/js/jscolor.min.js"></script>
-      <script src="http://themeelite.com/demos/flatr/js/scripts.min.js"></script>
+      <script src="{% static 'infobubble.js' %}"></script>
+      <script src="{% static 'jscolor.min.js' %}"></script>
+      <script src="{% static 'scripts.min.js' %}"></script>
    </body>
 </html>
