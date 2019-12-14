@@ -63,7 +63,7 @@ more-itertools==7.1.0
 nbconvert==5.5.0
 nbformat==4.4.0
 newspaper3k==0.2.8
-nltk==3.4.4
+nltk==3.4.5
 notebook==5.7.8
 numpy==1.17.2
 oauthlib==3.0.2
