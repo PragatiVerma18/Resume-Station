@@ -19,7 +19,7 @@ cssselect==1.0.3
 decorator==4.4.0
 defusedxml==0.6.0
 dj-database-url==0.5.0
-Django==2.2.4
+Django==2.2.8
 django-allauth==0.39.1
 django-appconf==1.0.3
 django-avatar==4.1.0
